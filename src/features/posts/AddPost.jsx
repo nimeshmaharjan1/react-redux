@@ -24,10 +24,11 @@ const AddPost = () => {
     setContent("");
     setTitle("");
   };
+  const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
   return (
     <section>
       <label htmlFor="my-modal" className="btn modal-button">
-        open modal
+        Add
       </label>
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
@@ -64,9 +65,12 @@ const AddPost = () => {
             <div className="form-control my-4">
               <div className="input-group">
                 <span className="text-md py-2">Users</span>
-                <select className="select select-bordered">
+                <select
+                  className="select select-bordered"
+                  onChange={onUserChange}
+                >
                   <option disabled value={null}>
-                    Pick category
+                    Pick user
                   </option>
                   {userOptions}
                 </select>
@@ -74,8 +78,16 @@ const AddPost = () => {
             </div>
           </form>
           <div className="modal-action ">
-            <label htmlFor="my-modal" className="btn" onClick={handleSubmit}>
+            <label
+              disabled={!canSave}
+              htmlFor="my-modal"
+              className="btn btn-primary"
+              onClick={handleSubmit}
+            >
               Submit
+            </label>
+            <label htmlFor="my-modal" className="btn btn-danger">
+              Cancel
             </label>
           </div>
         </div>
