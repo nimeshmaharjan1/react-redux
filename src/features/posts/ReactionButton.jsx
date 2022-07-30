@@ -16,10 +16,18 @@ const ReactionButton = ({ post }) => {
       <button
         key={name}
         type="button"
-        className="reaction-button"
-        onClick={dispatch(addReaction({ postId: post.id, reaction: name }))}
+        className="reaction-button mt-1 mr-2 btn hover:btn-primary"
+        onClick={() =>
+          dispatch(addReaction({ postId: post.id, reaction: name }))
+        }
       >
-        {emoji} {post.reactions[name]}
+        <span
+          style={{ fontSize: "1.2rem", marginLeft: "-0.2rem" }}
+          className="mr-1"
+        >
+          {emoji}
+        </span>
+        {post.reactions[name]}
       </button>
     );
   });

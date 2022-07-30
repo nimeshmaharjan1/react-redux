@@ -4,12 +4,9 @@ import AddPost from "./AddPost";
 import PostAuthor from "./PostAuthor";
 import { selectAllPosts } from "./postsSlice";
 import TimeAgo from "./TimeAgo";
+import ReactionButton from "./ReactionButton";
 const PostList = () => {
   const posts = useSelector(selectAllPosts);
-  // const orderedPosts = posts
-  //   .slice()
-  //   .sort((a, b) => b.createdAt.localCompare(a.createdAt));
-  // console.log(orderedPosts);
   const renderedPosts =
     posts &&
     posts.map((post) => (
@@ -23,6 +20,7 @@ const PostList = () => {
           <p>{post.content.substring(0, 100)}</p>
           <PostAuthor userId={post.userId}></PostAuthor>
           <TimeAgo timestamp={post.createdAt}></TimeAgo>
+          <ReactionButton post={post} />
           <div className="card-actions justify-end">
             <button className="btn btn-primary">Buy Now</button>
           </div>
